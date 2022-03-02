@@ -1,0 +1,36 @@
+.DS_Store
+
+**/output/*
+
+# IntelliJ
+out/
+.idea
+
+# Gradle
+.gradle/
+
+# File-based project format
+*.iws
+*.iml
+*.ipr
+*.log
+
+logs/
+
+build/
+
+.terraform/
+
+version.txt
+
+application-override.properties
+.idea/*
+.idea/codeStyles/*
+
+distro/*.jar
+distro/word-lists/*
+distro/**/card-words.txt
+distro/**/cards-output.txt
+
+*.hprof
+**/*.hprof

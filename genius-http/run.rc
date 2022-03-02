@@ -1,0 +1,26 @@
+#!/bin/bash
+
+
+sync_log() {
+  s3cmd sync -r --skip-existing --delete-removed \
+    s3://genius-access-logs-prod/$1/AWSLogs/064311607284/elasticloadbalancing/us-east-1/$2/ \
+    etl/httplogs/$3/$1/
+}
+
+
+sync_logs() {
+    sync_log genius3-prod-1b "$1" "$2"
+    sync_log genius3-prod-2d "$1" "$2"
+    sync_log genius3-prod-3e "$1" "$2"
+    sync_log genius3-com-prod-1b "$1" "$2"
+    sync_log genius3-com-prod-2d "$1" "$2"
+    sync_log genius3-com-prod-3e "$1" "$2"
+}
+
+etl_date() {
+   sync_logs $1 $2
+   export LOG_DATE=$2
+   docker-compose run pentaho-kettle
+}
+
+
