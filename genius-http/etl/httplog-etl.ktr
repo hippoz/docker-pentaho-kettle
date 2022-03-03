@@ -1321,15 +1321,18 @@ if (http_uri.match(/\?.+$/)) {
 }
 
 
-http_uri=http_uri.replace(/\/-?\d+\//g, '/{number}/')
 http_uri=http_uri.replace(/GUEST_\d+/g, '12345')
 
+
+var url2=http_uri.replace(/\/-?\d+\//g, '/{number}/')
+while(url2 != http_uri) {
+   http_uri=url2;
+   url2=http_uri.replace(/\/-?\d+\//g, '/{number}/')
+}
 
 
 http_uri=http_uri.replace(/\/-?\d+$/, '/{number}')
 http_uri=http_uri.replace(/\w{8}-\w{4}-\w{4}-\w{4}-\w{12}/g, '{uuid}')
-
-
 
 http_uri=http_uri.replace(/\/((Robot)?\d+,)+$/, '/{numbers}')
 
