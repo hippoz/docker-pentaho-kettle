@@ -2,6 +2,9 @@
 
 BASEDIR=$(dirname "$0")
 
+export PATH=$PATH:$BASEDIR:/usr/local/bin
+
+
 cd "$BASEDIR"
 
 ./yesterday.sh
