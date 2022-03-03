@@ -1141,7 +1141,7 @@
     <fileNameField/>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-	    <name>${Internal.Transformation.Filename.Directory}/output/${logdate}_uri_stats</name>
+      <name>${Internal.Transformation.Filename.Directory}/output/${logdate}_uri_stats</name>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>N</do_not_open_new_file_init>
       <extention>log</extention>
@@ -1313,12 +1313,11 @@ var http_host = url.substring(0, idx);
         <jsScript_script>//Script here
 
 // remove parameters
-var http_uri=http_uri.replace(/\?.+/, '')
+http_uri=http_uri.replace(/\?.+/, '')
 
 
 http_uri=http_uri.replace(/\/-?\d+\//g, '/{number}/')
 http_uri=http_uri.replace(/GUEST_\d+/g, '12345')
-
 
 
 
@@ -1327,11 +1326,11 @@ http_uri=http_uri.replace(/\w{8}-\w{4}-\w{4}-\w{4}-\w{12}/g, '{uuid}')
 
 
 
-http_uri=http_uri.replace(/\/((Robot)?\d+,)*$/g, '/{numbers}')
+http_uri=http_uri.replace(/\/((Robot)?\d+,)+$/, '/{numbers}')
 
 
-http_uri=http_uri.replace(/\/.+:.+\//g, '/{offer-id}/')
-http_uri=http_uri.replace(/\/.+:.+$/, '/{offer-id}')
+// http_uri=http_uri.replace(/\/.+:.+\//g, '/{offer-id}/')
+// http_uri=http_uri.replace(/\/.+:.+$/, '/{offer-id}')
 
 http_uri=http_uri.replace(/\/POGO\.OFR.+\//, '/{offer-id}/')
 
