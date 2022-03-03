@@ -1313,7 +1313,12 @@ var http_host = url.substring(0, idx);
         <jsScript_script>//Script here
 
 // remove parameters
-http_uri=http_uri.replace(/\?.+/, '')
+
+var hasParams = false
+if (http_uri.match(/\?.+$/)) {
+   hasParams = true
+   http_uri=http_uri.replace(/\?.+$/, '')
+}
 
 
 http_uri=http_uri.replace(/\/-?\d+\//g, '/{number}/')
@@ -1329,13 +1334,18 @@ http_uri=http_uri.replace(/\w{8}-\w{4}-\w{4}-\w{4}-\w{12}/g, '{uuid}')
 http_uri=http_uri.replace(/\/((Robot)?\d+,)+$/, '/{numbers}')
 
 
-// http_uri=http_uri.replace(/\/.+:.+\//g, '/{offer-id}/')
-// http_uri=http_uri.replace(/\/.+:.+$/, '/{offer-id}')
+http_uri=http_uri.replace(/\/[^\/]+:[^\/]+\//g, '/{offer-id}/')
+http_uri=http_uri.replace(/\/[^\/]+:[^\/]+$/, '/{offer-id}')
 
 http_uri=http_uri.replace(/\/POGO\.OFR.+\//, '/{offer-id}/')
 
 
-http_uri=http_uri.replace(/\/internal\/rests\/powerups\/.+/, '/internal/rests/powerups/{game_code}')</jsScript_script>
+http_uri=http_uri.replace(/\/internal\/rests\/powerups\/.+/, '/internal/rests/powerups/{game_code}')
+
+if (hasParams) {
+   http_uri=http_uri + "?queryString"
+}
+</jsScript_script>
       </jsScript>
     </jsScripts>
     <fields>
@@ -1357,7 +1367,7 @@ http_uri=http_uri.replace(/\/internal\/rests\/powerups\/.+/, '/internal/rests/po
       </output>
     </remotesteps>
     <GUI>
-      <xloc>432</xloc>
+      <xloc>416</xloc>
       <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
