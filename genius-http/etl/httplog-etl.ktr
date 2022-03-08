@@ -1340,7 +1340,8 @@ http_uri=http_uri.replace(/\/((Robot)?\d+,)+$/, '/{numbers}')
 http_uri=http_uri.replace(/\/[^\/]+:[^\/]+\//g, '/{offer-id}/')
 http_uri=http_uri.replace(/\/[^\/]+:[^\/]+$/, '/{offer-id}')
 
-http_uri=http_uri.replace(/\/POGO\.OFR.+\//, '/{offer-id}/')
+http_uri=http_uri.replace(/\/POGO\.OFR[^\/]+\//, '/{offer-id}/')
+http_uri=http_uri.replace(/\/POGO\.OFR[^\/]+$/, '/{offer-id}')
 
 
 http_uri=http_uri.replace(/\/internal\/rests\/powerups\/.+/, '/internal/rests/powerups/{game_code}')
